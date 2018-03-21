@@ -17,7 +17,11 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt('1234'),
         'remember_token' => str_random(10),
+        'lang' => $faker->randomElement(['en', 'ja']),
+        'timezone' => $faker->timezone(),
+        'created_at' => $faker->dateTime(),
+        'updated_at' => $faker->dateTime(),
     ];
 });
