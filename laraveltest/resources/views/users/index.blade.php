@@ -25,4 +25,12 @@
     </div>
     {{ $users->links() }}
 </div>
+@if (Auth::check() && Auth::user()->isAdmin())
+    <!-- 管理者にのみ、「ユーザー作成」のメニューを表示する -->
+    <div class="mb-2">
+        <a href="{{ url('users/create') }}" class="btn btn-primary">
+            {{ __('Create') }}
+        </a>
+    </div>
+@endif
 @endsection

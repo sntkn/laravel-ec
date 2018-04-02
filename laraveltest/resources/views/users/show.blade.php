@@ -7,6 +7,7 @@
     <h1>{{ $title }}</h1>
 
     <!-- 編集・削除ボタン -->
+    @can('edit', $user)
     <div>
         <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-primary">
             {{ __('Edit') }}
@@ -17,6 +18,7 @@
             @slot('name', $user->title)
         @endcomponent
     </div>
+    @endcan
 
     <!-- ユーザー1件の情報 -->
     <dl class="row">
@@ -38,7 +40,9 @@
                     <th>{{ __('Body') }}</th>
                     <th>{{ __('Created') }}</th>
                     <th>{{ __('Updated') }}</th>
+                    @can('edit', $user)
                     <th></th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +56,7 @@
                         <td>{{ $post->body }}</td>
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
+                        @can('edit', $user)
                         <td nowrap>
                             <a href="{{ url('posts/' . $post->id . '/edit') }}" class="btn btn-primary">
                                 {{ __('Edit') }}
@@ -62,6 +67,7 @@
                                 @slot('name', $post->title)
                             @endcomponent
                         </td>
+                        @endcan
                      </tr>
                 @endforeach
             </tbody>

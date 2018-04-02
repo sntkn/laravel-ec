@@ -46,4 +46,13 @@ class User extends Authenticatable
     {
         $this->notify(new CustomPasswordReset($token));
     }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->id === config('admin_id');
+    }
 }

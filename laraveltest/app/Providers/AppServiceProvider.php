@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
             \Debugbar::info(__LINE__);
             \Schema::enableForeignKeyConstraints();
         }
+        config(['admin_id' => 1]);
     }
 
     /**
