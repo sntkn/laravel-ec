@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\StoreUser;
 
 class UserController extends Controller
 {
@@ -35,10 +36,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreUser  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
         $user = new User;
         $user->name = $request->name;
@@ -82,6 +83,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->authorize('edit', $user);
+        $request->validate([
+            'name' => (new StoreUser())->rules()['name']
+        ]);
         $user->name = $request->name;
         $user->save();
 

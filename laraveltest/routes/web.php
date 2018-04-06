@@ -10,13 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Post;
 
 Route::get('/', function () {
     return view('top');
 });
 
 Route::resource('users', 'UserController');
-Route::resource('posts', 'PostController');
+#Route::group(['middleware' => ['auth', 'can:posts.edit']], function () {
+    Route::resource('posts', 'PostController')->middleware('can:posts.edit,post');
+#});
 
 Auth::routes();
 
