@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('users.create')->with('status', __('Created new user.'));
     }
 
     /**
@@ -89,7 +89,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        return redirect('users/'.$user->id);
+        return redirect('users/'.$user->id)->with('status', __('Updated a user.'));
     }
 
     /**
@@ -103,6 +103,6 @@ class UserController extends Controller
         $this->authorize('edit', $user);
         $user->delete();
         $user->posts()->delete();
-        return redirect('users');
+        return redirect('users')->with('status', __('Deleted a user.'));
     }
 }

@@ -67,3 +67,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 に書かれている
 - authのコントローラメソッド  `vendor/laravel/framework/src/IlluminateFoundation/Auth`
 にあるtraitに書かれている
+
+### PHP trait
+
+- trait呼び出し元で同名メソッドがあると上書きしてしまう(asで別名にすると回避は可能)
+- trait複数呼び出しによる同名メソッドの衝突の回避方法は複雑
