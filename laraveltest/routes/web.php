@@ -11,6 +11,7 @@
 |
 */
 use App\Post;
+use App\Models\Product;
 
 Route::get('/', function () {
     return view('top');
@@ -24,3 +25,8 @@ Route::resource('users', 'UserController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/nav/{category}', 'CategoryController@index');
+Route::get('/catalog', 'CatalogController@index');
+Route::get('/{product}', 'CatalogController@show');

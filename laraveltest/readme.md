@@ -72,3 +72,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - trait呼び出し元で同名メソッドがあると上書きしてしまう(asで別名にすると回避は可能)
 - trait複数呼び出しによる同名メソッドの衝突の回避方法は複雑
+
+### 残り
+
+- カテゴリの実装
+- 言語別説明文などの実装
+- 金額とレートの実装
+- 検索フォームの実装(ElasticSearch)
+- VueでのSPA
