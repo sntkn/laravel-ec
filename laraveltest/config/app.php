@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Franzose\ClosureTable\ClosureTableServiceProvider::class,
 
         /*
          * Application Service Providers...

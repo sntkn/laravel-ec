@@ -19,4 +19,13 @@ class Product extends Model
     {
         return 'alias';
     }
+
+    /**
+     *
+     * @return \App\Category
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

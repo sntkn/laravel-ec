@@ -4,9 +4,12 @@
 @extends('layouts.my')
 @section('content')
 <div class="container">
-    <h1>{{ $title }}</h1>
-    <hr>
-    @foreach($products->chunk(3) as $items)
+    @component('components.category_breadcrumbs')
+        @slot('category', $category)
+    @endcomponent
+
+    <h1 id="post-title">{{ $category->name }}</h1>
+    @foreach($category->products->chunk(3) as $items)
     <div class="row">
         @foreach($items as $item)
         <div class="col-4 border p-3">
@@ -29,6 +32,7 @@
     </div>
     @endforeach
     <hr>
-    {{ $products->links() }}
+    {{ $category->products->links() }}
+
 </div>
 @endsection
