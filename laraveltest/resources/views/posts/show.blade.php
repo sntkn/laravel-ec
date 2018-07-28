@@ -1,7 +1,5 @@
-@php
-    $title = $post->title;
-@endphp
 @extends('layouts.my')
+@section('title', $post->title)
 @section('content')
 <div class="container">
     <h1 id="post-title">{{ $title }}</h1>

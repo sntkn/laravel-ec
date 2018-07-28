@@ -2,6 +2,7 @@
     $title = __('Posts');
 @endphp
 @extends('layouts.my')
+@section('title', 'Posts')
 @section('content')
 <div class="container">
     <h1>{{ $title }}</h1>

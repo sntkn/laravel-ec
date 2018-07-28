@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}</title>
+    <title>@if (! Request::is('/'))@yield('title') | @endif{{ env('APP_NAME') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -43,6 +43,9 @@
                                     <span class="sr-only">(current)</span>
                                 @endif
                             </a>
+                        </li>
+                        <li class="nav-item active">
+                            @include('form.search_products')
                         </li>
                     </ul>
 

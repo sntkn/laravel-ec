@@ -1,7 +1,5 @@
-@php
-    $title = __('Create Post');
-@endphp
 @extends('layouts.my')
+@section('title', 'Create Post')
 @section('content')
 <div class="container">
     <h1>{{ $title }}</h1>

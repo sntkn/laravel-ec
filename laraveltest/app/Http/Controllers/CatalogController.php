@@ -32,4 +32,18 @@ class CatalogController extends Controller
         $product->category = $product->category()->first();
         return view('catalog.show')->with(compact('product'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $products = Product::searchProducts($request->input('q'), self::PER_PAGE)
+            ->appends(['q' => $request->input('q')]);
+
+        return view('catalog.search', compact('products'));
+    }
 }

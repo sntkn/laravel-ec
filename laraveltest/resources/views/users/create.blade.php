@@ -1,7 +1,5 @@
-@php
-    $title = __('Create User');
-@endphp
 @extends('layouts.my')
+@section('title', 'Create User')
 @section('content')
 <div class="container">
     <h1>{{ $title }}</h1>

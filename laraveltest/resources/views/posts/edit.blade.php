@@ -1,7 +1,5 @@
-@php
-    $title = __('Edit') . ': ' . $post->title;
-@endphp
 @extends('layouts.my')
+@section('title', 'Edit' . ': ' . $post->title)
 @section('content')
 <div class="container">
     <h1>{{ $title }}</h1>

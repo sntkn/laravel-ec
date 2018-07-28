@@ -1,7 +1,5 @@
-@php
-    $title = __('User') . ': ' . $user->name;
-@endphp
 @extends('layouts.my')
+@section('title', 'User')
 @section('content')
 <div class="container">
     <h1>{{ $title }}</h1>

@@ -1,7 +1,5 @@
-@php
-    $title = __('Posts');
-@endphp
 @extends('layouts.my')
+@section('title',  $product->name )
 @section('content')
 <div class="container">
     @component('components.category_breadcrumbs')

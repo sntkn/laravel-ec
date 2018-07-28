@@ -17,7 +17,8 @@
         "fzaninotto/faker": "^1.7",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "elasticquent/elasticquent": "dev-master"
     },
     "autoload": {
         "files": [
@@ -38,8 +39,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
