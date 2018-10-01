@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Elasticquent\ElasticquentTrait;
+use Illuminate\Support\Facades\Log;
 
 class Product extends Model
 {
@@ -17,7 +18,6 @@ class Product extends Model
      *
      * @var array
      */
-    protected $indexSettings = [];
     protected $mappingProperties = array(
         'name' => [
             'type' => 'text',
@@ -30,6 +30,9 @@ class Product extends Model
         'description' => [
             'type' => 'text',
             'analyzer' => 'standard',
+        ],
+        'price' => [
+            'type' => 'short',
         ],
     );
     /**
@@ -52,21 +55,41 @@ class Product extends Model
 
     /**
      *
-     * @param string $query
+     * @param \Illuminate\Http\Request $request
      * @param int $limit
      * @return Elasticquent\ElasticquentPaginator
      */
-    public static function searchProducts($query, $limit)
+    public static function searchProducts(\Illuminate\Http\Request $request, $limit)
     {
         $page = \Elasticquent\ElasticquentPaginator::resolveCurrentPage() ? : 1;
         $offset = ($page - 1) * $limit;
-        $products = Product::searchByQuery(
-            ['match' => ['name' => $query]],
-            null,
-            null,
-            $limit,
-            $offset
-        )->paginate($limit);
+
+        $query = [
+            'bool' => [
+                'must' => [
+                    [
+                        'bool' => [
+                            'should' => [
+                                ['term' => ['name' => $request->input('q')]]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        if ($request->input('title')) {
+            $query['bool']['must'][0]['bool']['should'][] = ['term' => ['title' => $request->input('q')]];
+        }
+        if ($request->input('description')) {
+            $query['bool']['must'][0]['bool']['should'][] = ['term' => ['description' => $request->input('q')]];
+        }
+        if ($request->input('price_low')) {
+            $query['bool']['must'][] = ['range' => ['price' => ['gt' => $request->input('price_low')]]];
+        }
+        if ($request->input('price_high')) {
+            $query['bool']['must'][] = ['range' => ['price' => ['lt' => $request->input('price_high')]]];
+        }
+        $products = Product::searchByQuery($query, null, null, $limit, $offset)->paginate($limit);
 
         return $products;
     }

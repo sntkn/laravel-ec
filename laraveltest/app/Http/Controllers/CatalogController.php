@@ -41,8 +41,12 @@ class CatalogController extends Controller
      */
     public function search(Request $request)
     {
-        $products = Product::searchProducts($request->input('q'), self::PER_PAGE)
-            ->appends(['q' => $request->input('q')]);
+        $products = Product::searchProducts($request, self::PER_PAGE)
+            ->appends(['q' => $request->input('q')])
+            ->appends(['title' => $request->input('title')])
+            ->appends(['description' => $request->input('description')])
+            ->appends(['price_low' => $request->input('price_low')])
+            ->appends(['price_high' => $request->input('price_high')]);
 
         return view('catalog.search', compact('products'));
     }

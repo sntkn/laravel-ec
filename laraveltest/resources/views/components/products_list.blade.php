@@ -7,9 +7,9 @@
                 <img src="/images/book_doujinshi.png" class="p-sm img-thumbnail">
             </a>
         </div>
-        <h3>
-            {{$item->price}}
-        </h3>
+        <strong>
+            Price: {{$item->price}}
+        </strong>
         <h4>
         <a href="{{ url('/' . $item->alias) }}">
             {{ $item->name }}
